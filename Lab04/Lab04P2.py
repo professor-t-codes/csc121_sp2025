@@ -1,6 +1,6 @@
 ##
-# Student Name - Replace with your name!
-# Date - Replace with the date!
+# Richard Tillies
+# December 19, 2024
 # Trish's Swap Shop Calculator
 #
 # Global Constants
@@ -29,7 +29,21 @@ def main():  # DO NOT CHANGE ANY CODE IN THE MAIN ROUTINE
 # It should calculate and display the total cost of each item. It should also
 # calculate and display the total cost with tax.
 
-# -- FILL THIS IN -- #
+def calc_and_display_total(books, dvds, games):
+    book_cost = books * BOOK_PRICE
+    dvd_cost = dvds * DVD_PRICE
+    game_cost = games * GAME_PRICE
 
+    cost_before_tax = book_cost + dvd_cost + game_cost
+    sales_tax = cost_before_tax * TAX_RATE
+    cost_after_tax = cost_before_tax + sales_tax
+
+    print(f'Books: ${book_cost:.2f}')
+    print(f'DVDs: ${dvd_cost:.2f}')
+    print(f'Games: ${game_cost:.2f}')
+
+    print(f'Subtotal: ${cost_before_tax:.2f}')
+    print(f'Tax: ${sales_tax:.2f}')
+    print(f'Total: ${cost_after_tax:.2f}')
 
 main()
