@@ -1,4 +1,0 @@
-This is a word list
-Giving this word list a test
-See how this word list works
-Test it and see how a word list file works
