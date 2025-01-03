@@ -61,3 +61,15 @@ class InventoryItem:
                  + f'\tCategory: {self.__category}'
 
         return output
+
+    def get_name(self):
+        return self.__name
+
+    def get_count(self):
+        return self.__count
+
+    def get_cost(self):
+        return self.__cost
+
+    def get_category(self):
+        return self.__category

@@ -1,10 +1,11 @@
 #
-# Student Name
-# Date
+# Richard Tillies
+# January 3, 2025
 # Classes and OO Programming - Problem 2
 #
 import pickle
 from inventory_item import InventoryItem, CATEGORY_LIST
+
 
 def main():
     inventory_list = load_inventory()
@@ -15,6 +16,9 @@ def main():
         # TODO - Create an InventoryItem object, ask the user for item input
         #  using the object's method, then append the object to the inventory
         #  list. HINT: Should be just 3 lines of code.
+        new_item = InventoryItem()
+        new_item.get_item_input()
+        inventory_list.append(new_item)
 
         answer = input('Do you want to enter more items? ')
 
@@ -23,6 +27,7 @@ def main():
 
     display_inventory(inventory_list)
     save_inventory(inventory_list)
+
 
 def load_inventory():
     """
@@ -37,8 +42,15 @@ def load_inventory():
     # TODO - Attempt to load inventory data from a binary file named
     #  inventory.dat. If the file exists, load it into the inventory list.
     #  If the file does not exist, leave the inventory list empty.
+    try:
+        inventory = open('inventory.dat', 'rb')
+        inventory_list = pickle.load(inventory)
+        inventory.close()
+    except FileNotFoundError:
+        pass
 
     return inventory_list
+
 
 def save_inventory(inventory_list):
     """
@@ -50,8 +62,12 @@ def save_inventory(inventory_list):
     """
     # TODO - Open a binary file named inventory.dat and dump the inventory
     #  list that has been passed in as a parameter to that file.
+    inventory = open('inventory.dat', 'wb')
+    pickle.dump(inventory_list, inventory)
+    inventory.close()
 
     print('Inventory was saved in inventory.dat.')
+
 
 def display_category(category_name, inventory_list):
     """
@@ -72,6 +88,12 @@ def display_category(category_name, inventory_list):
     # TODO - Display inventory items that are in the specific category
     #  Both the category name and inventory are passed in as parameters.
     #  If there are no items in the category, print "No items."
+    for item in inventory_list:
+        if item.get_category() == category_name:
+            print(item)
+        else:
+            print("No items.")
+
 
 def display_inventory(inventory_list):
     """
@@ -88,6 +110,14 @@ def display_inventory(inventory_list):
     # TODO - Display the inventory items that are in the inventory list
     #  that was passed in as a parameter. If the list is empty, display
     #  "Inventory is empty."
-    print()
+    if len(inventory_list) > 0:
+        for item in inventory_list:
+            print(item)
+    else:
+        print("Inventory is empty.")
+    print('-----------------')
+    #
+    # print()
+
 
 main()
