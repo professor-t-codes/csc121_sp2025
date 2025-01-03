@@ -17,7 +17,7 @@ def main():
     print(barbie)
     print(uno)
 
-    # Cr
+    # Create new item, get item input, print to console
     new_item = InventoryItem()
     new_item.get_item_input()
     print(new_item)
