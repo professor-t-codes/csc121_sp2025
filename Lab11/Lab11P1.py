@@ -22,4 +22,5 @@ def main():
     new_item.get_item_input()
     print(new_item)
 
+
 main()
