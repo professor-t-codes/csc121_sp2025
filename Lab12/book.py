@@ -1,9 +1,10 @@
 #
-# Student Name
-# Date
+# Richard Tillies
+# January 4, 2025
 # Inheritance and Polymorphism - Problem 1 & 2
 #
 from inventory_item import InventoryItem
+
 
 class Book(InventoryItem):
     def __init__(self, item_name='', item_count=0, unit_cost=0.00, isbn13=''):
@@ -26,13 +27,26 @@ class Book(InventoryItem):
 
         :return:
         """
-        #TODO - Call the base class get_item_input() using
+        # TODO - Call the base class get_item_input() using
         # the super() function.
+        super().get_item_input()
 
-        #TODO - Ask the user for the isbn13. Validate that
+        # TODO - Ask the user for the isbn13. Validate that
         # it is all digits and has 13 characters
 
-        pass  # Remove this line
+        while True:
+            try:
+                isbn = input('What is the ISBN? ')
+                if len(isbn) != 13:
+                    print('ISBN must be a 13 digit number (length).')
+                else:
+                    valid = int(isbn)
+                    self.isbn13 = isbn
+                    break
+            except ValueError:
+                print('ISBN must be a 13 digit number (int).')
+
+        # pass  # Remove this line
 
     def __str__(self):
         """

@@ -1,6 +1,6 @@
 #
-# Student Name
-# Date
+# Richard Tillies
+# January 4, 2025
 # Inheritance and Polymorphism - Problem 2
 #
 import pickle
@@ -28,6 +28,21 @@ def main():
         # TODO - Create an appropriate object, ask the user for item input
         #  using the object's method, then append the object to the inventory
         #  list.
+        match answer_inner:
+            case '1':
+                print('Book')
+                item = Book()
+                # break
+            case '2':
+                print('Game')
+                item = Game()
+                # break
+            case _:  # case 3, input already validated 1-3
+                print('DVD')
+                item = DVD()
+
+        item.get_item_input()
+        inventory_list.append(item)
 
         answer_outer = input('Do you want to enter more items? ')
 
@@ -49,8 +64,15 @@ def load_inventory():
     # TODO - Attempt to load inventory data from a binary file named
     #  inventory.dat. If the file exists, load it into the inventory list.
     #  If the file does not exist, leave the inventory list empty.
+    try:
+        inventory = open('inventory.dat', 'rb')
+        inventory_list = pickle.load(inventory)
+        inventory.close()
+    except FileNotFoundError:
+        pass
 
     return inventory_list
+
 
 def save_inventory(inventory_list):
     """
@@ -63,8 +85,12 @@ def save_inventory(inventory_list):
 
     # TODO - Open a binary file named inventory.dat and dump the inventory
     #  list that has been passed in as a parameter to that file.
+    inventory = open('inventory.dat', 'wb')
+    pickle.dump(inventory_list, inventory)
+    inventory.close()
 
     print('Inventory.dat file was created.')
+
 
 def display_inventory(inventory_list):
     """
@@ -81,6 +107,12 @@ def display_inventory(inventory_list):
     # TODO - Display the inventory items that are in the inventory list
     #  that was passed in as a parameter. If the list is empty, display
     #  "Inventory is empty."
+    if len(inventory_list) > 0:
+        for item in inventory_list:
+            print(item)
+    else:
+        print("Inventory is empty.")
+
     print('-----------------')
     print()
 
